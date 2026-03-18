@@ -1,0 +1,17 @@
+# 忽略这些文件和目录
+.vscode/
+.gitignore
+*.ts
+!*.d.ts
+node_modules/
+out/
+*.vsix
+tsconfig.json
+esbuild.js
+
+# 但不要忽略这些
+!dist/extension.js
+!dist/extension.js.map
+!package.json
+!README.md
+!LICENSE
