@@ -1327,7 +1327,13 @@
       if (!userHasScrolledUp) {
         isProgrammaticScroll = true;
         chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
-        setTimeout(() => { isProgrammaticScroll = false; }, 300);
+        const onScrollEnd = () => {
+          isProgrammaticScroll = false;
+          chatContainer.removeEventListener('scrollend', onScrollEnd);
+        };
+        chatContainer.addEventListener('scrollend', onScrollEnd);
+        // fallback for browsers without scrollend support
+        setTimeout(() => { isProgrammaticScroll = false; chatContainer.removeEventListener('scrollend', onScrollEnd); }, 500);
       }
     }
 
@@ -1912,7 +1918,7 @@
           updateButtonState();
           if (navigator.onLine) updateConnectionStatus('online');
           messageRenderer.startStream(message.silent);
-          userHasScrolledUp = false;
+          if (history.length === 0) { userHasScrolledUp = false; }
           break;
           
         case 'streamUpdate':
@@ -1938,6 +1944,7 @@
             if (modifiedFiles.size > 0) {
               updateModifyDecisionBar();
             }
+            smartScroll();
           }, 150);
           break;
           
