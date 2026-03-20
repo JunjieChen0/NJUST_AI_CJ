@@ -49674,6 +49674,7 @@ var LLMAChatProvider = class _LLMAChatProvider {
     const savedHistory = this._context.globalState.get("llma.chatHistory") || [];
     this.currentSessionHistory = savedHistory.slice();
     webviewView.webview.postMessage({ type: "initHistory", history: savedHistory });
+    webviewView.webview.postMessage({ type: "showWelcome" });
     const sendTheme = () => {
       const kind = vscode18.window.activeColorTheme.kind;
       const theme = kind === vscode18.ColorThemeKind.Light || kind === vscode18.ColorThemeKind.HighContrastLight ? "light" : "dark";

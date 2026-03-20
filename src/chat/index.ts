@@ -229,6 +229,9 @@ export class LLMAChatProvider implements vscode.WebviewViewProvider {
     this.currentSessionHistory = savedHistory.slice();
     webviewView.webview.postMessage({ type: 'initHistory', history: savedHistory });
 
+    // 显示欢迎界面
+    webviewView.webview.postMessage({ type: 'showWelcome' });
+
     // 发送当前主题；主题变化 + 面板重新可见时都发送，实现立马切换
     const sendTheme = () => {
       const kind = vscode.window.activeColorTheme.kind;

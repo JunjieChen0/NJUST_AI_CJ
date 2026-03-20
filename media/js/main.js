@@ -1941,6 +1941,10 @@
           messageRenderer.updateStream(message.content, message.reasoning);
           break;
           
+        case 'showWelcome':
+          showWelcome();
+          break;
+          
         case 'streamEnd':
           const result = messageRenderer.endStream();
 

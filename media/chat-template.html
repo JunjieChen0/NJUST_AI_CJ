@@ -1725,4 +1725,112 @@ textarea {
     }
     applyTheme('{{INITIAL_THEME}}');
     {{SCRIPTS}}
+    
+    // 欢迎界面函数
+    function showWelcome() {
+      const overlay = document.getElementById('welcome-overlay');
+      if (overlay) {
+        overlay.style.display = 'flex';
+      }
+    }
+
+    function closeWelcome() {
+      const overlay = document.getElementById('welcome-overlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+      }
+    }
+
+    // 绑定欢迎界面按钮事件
+    document.addEventListener('DOMContentLoaded', function() {
+      const welcomeBtn = document.getElementById('welcome-confirm-btn');
+      if (welcomeBtn) {
+        welcomeBtn.addEventListener('click', closeWelcome);
+      }
+    });
   </script>
+  
+  <!-- 欢迎界面 -->
+  <div id="welcome-overlay" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  ">
+    <div style="
+      background: var(--vscode-editorWidget-background);
+      border: 1px solid var(--vscode-panel-border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    ">
+      <h1 style="
+        font-size: 20px;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align: center;
+      ">欢迎使用 NJUST AI Assistant</h1>
+      <p style="
+        font-size: 12px;
+        color: var(--text-secondary);
+        text-align: center;
+        margin-bottom: 16px;
+        opacity: 0.8;
+      ">智能编程助手，助力高效开发</p>
+      <div style="
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        margin-bottom: 16px;
+      "></div>
+      <ul style="
+        margin-left: 0;
+        margin-bottom: 20px;
+        font-size: 12px;
+        list-style: none;
+        padding: 0;
+      ">
+        <li style="margin-bottom: 8px; padding: 6px 10px; background: rgba(139,92,246,0.08); border-radius: 5px;">
+          <strong style="color: var(--primary-color);">💬 AI 聊天</strong>：与 AI 对话，解答编程问题
+        </li>
+        <li style="margin-bottom: 8px; padding: 6px 10px; background: rgba(139,92,246,0.08); border-radius: 5px;">
+          <strong style="color: var(--primary-color);">✨ 代码补全</strong>：智能预测您的代码
+        </li>
+        <li style="margin-bottom: 8px; padding: 6px 10px; background: rgba(139,92,246,0.08); border-radius: 5px;">
+          <strong style="color: var(--primary-color);">⚡ 一键编译</strong>：支持多种语言编译运行
+        </li>
+        <li style="margin-bottom: 0; padding: 6px 10px; background: rgba(139,92,246,0.08); border-radius: 5px;">
+          <strong style="color: var(--primary-color);">🤖 Agent 模式</strong>：自动修改文件、执行命令
+        </li>
+      </ul>
+      <div style="text-align: center;">
+        <button id="welcome-confirm-btn" style="
+          background: var(--primary-color);
+          color: #ffffff;
+          border: none;
+          padding: 8px 24px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        ">开始使用</button>
+        <div style="
+          margin-top: 12px;
+          font-size: 10px;
+          color: var(--text-tertiary);
+          opacity: 0.6;
+        ">NJUST · CJJ </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
